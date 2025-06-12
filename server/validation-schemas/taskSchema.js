@@ -25,7 +25,7 @@ const moveTaskSchema = Joi.object().keys({
   column_id: Joi.string().required(),
 });
 
-const deleteTaskSchema = Joi.object().keys({
+const getTaskSchema = Joi.object().keys({
   task_id: Joi.string().required()
 });
 
@@ -34,5 +34,5 @@ module.exports = {
   createTaskSchema,
   updateTaskSchema,
   moveTaskSchema,
-  deleteTaskSchema
+  getTaskSchema
 };

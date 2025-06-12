@@ -7,6 +7,7 @@ const port = configObj.port;
 const userRoute = require("./routes/userRoute");
 const boardRoute = require("./routes/boardRoute");
 const taskRoute = require("./routes/taskRoute");
+const columnsRoute = require("./routes/columnsRoute");
 const errorHandler = require("./middlewares/errorHandler");
 
 //middleware for body parser
@@ -22,6 +23,7 @@ app.get("/api", (req, res) => {
 app.use("/api/user", userRoute);
 app.use("/api/board", boardRoute);
 app.use("/api/task", taskRoute);
+app.use("/api/columns", columnsRoute);
 
 // Register the error handler middleware
 app.use(errorHandler);

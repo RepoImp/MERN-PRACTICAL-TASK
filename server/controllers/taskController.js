@@ -8,7 +8,20 @@ const getAllTasks = async (req, res, next) => {
 
     res
       .status(200)
-      .json({ data: tasks, message: "Task Fetched Successfully." });
+      .json({ data: tasks, message: "Tasks Fetched Successfully." });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getTaskById = async (req, res, next) => {
+  try {
+    const task_id = req.params.task_id;
+    const task = await Task.findById(task_id);
+
+    res
+      .status(200)
+      .json({ data: task, message: "Task Fetched Successfully." });
   } catch (error) {
     next(error);
   }
@@ -91,4 +104,4 @@ const deleteTask = async (req, res, next) => {
   }
 };
 
-module.exports = { createTask, getAllTasks, updateTask, moveTask, deleteTask };
+module.exports = { createTask, getAllTasks,getTaskById, updateTask, moveTask, deleteTask };

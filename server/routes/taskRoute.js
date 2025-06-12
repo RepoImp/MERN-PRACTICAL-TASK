@@ -4,7 +4,7 @@ const {
   getAllTasksSchema,
   updateTaskSchema,
   moveTaskSchema,
-  deleteTaskSchema,
+  getTaskSchema,
 } = require("../validation-schemas/taskSchema");
 const {
   createTask,
@@ -12,6 +12,7 @@ const {
   deleteTask,
   moveTask,
   updateTask,
+  getTaskById,
 } = require("../controllers/taskController");
 const validateRequest = require("../middlewares/validationHandler");
 const router = express.Router();
@@ -21,12 +22,17 @@ router.get(
   validateRequest(getAllTasksSchema, "params"),
   getAllTasks
 );
+router.get(
+  "/get/byid/:task_id",
+  validateRequest(getTaskSchema, "params"),
+  getTaskById
+);
 router.post("/create", validateRequest(createTaskSchema), createTask);
 router.put("/update", validateRequest(updateTaskSchema), updateTask);
 router.patch("/move", validateRequest(moveTaskSchema), moveTask);
 router.delete(
   "/delete/:task_id",
-  validateRequest(deleteTaskSchema, "params"),
+  validateRequest(getTaskSchema, "params"),
   deleteTask
 );
 
