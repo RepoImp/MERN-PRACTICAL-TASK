@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { AuthContext } from "../context/ContextProvider";
+import { AppContext } from "../context/ContextProvider";
 
 const PrivateRoute = () => {
-  const { token } = useContext(AuthContext);
+  const { token } = useContext(AppContext);
   if (!token) return <Navigate to="/" />;
   return <Outlet />;
 };
