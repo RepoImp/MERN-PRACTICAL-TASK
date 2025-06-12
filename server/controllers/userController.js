@@ -7,6 +7,10 @@ const registerUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     // console.log({ email, password });
+    const alreadyExist = await User.findOne({ email });
+    if (alreadyExist) {
+      return res.status(400).json({ data: {}, message: "User Already Exist" });
+    }
 
     const salt = await bcrypt.genSalt(10);
     const HashigPassword = await bcrypt.hash(password, salt);
